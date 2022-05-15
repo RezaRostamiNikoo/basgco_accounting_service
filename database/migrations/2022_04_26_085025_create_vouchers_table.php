@@ -10,13 +10,11 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("request_id");
             $table->unsignedBigInteger("row");
             $table->string("date");
             $table->string("description");
-
             $table->timestamps();
-
-//            int id_pishdakhast;
         });
     }
 

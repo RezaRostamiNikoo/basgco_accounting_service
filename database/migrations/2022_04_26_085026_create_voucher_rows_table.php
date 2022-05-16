@@ -10,11 +10,11 @@ class CreateVoucherRowsTable extends Migration
     {
         Schema::create('voucher_rows', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("voucher_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedBigInteger("row");
             $table->string("date");
             $table->string("status");
             $table->string("description");
-            $table->string("file");
 
             $table->timestamps();
         });

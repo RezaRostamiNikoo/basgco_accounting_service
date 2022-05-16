@@ -10,13 +10,11 @@ class CreateTempVoucherRowsTable extends Migration
     {
         Schema::create('temp_voucher_rows', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("row");
-            $table->string("date");
-            $table->string("status");
+            $table->foreignId("temp_voucher_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedBigInteger("detail_account_id");
             $table->string("description");
-            $table->string("file");
-
-            $table->timestamps();
+            $table->bigInteger("amount");
+            $table->timestamps(); // TODO: اگر حذفش کردیم حتمن توی ایونت باید خود سند رو آپدیت کنیم تا بفهمیم که دستکاری شده است
         });
     }
 

@@ -10,10 +10,9 @@ class CreateTempVouchersTable extends Migration
     {
         Schema::create('temp_vouchers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("request_id");
             $table->unsignedBigInteger("row");
             $table->string("date");
-            $table->string("status");
+            $table->string("status")->default("created");
             $table->string("description");
             $table->timestamps();
         });

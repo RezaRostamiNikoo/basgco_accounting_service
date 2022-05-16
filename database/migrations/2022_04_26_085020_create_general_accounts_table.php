@@ -10,9 +10,10 @@ class CreateGeneralAccountsTable extends Migration
     {
         Schema::create('general_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string("accounting_group_id");
+            $table->foreignId("accounting_group_id")->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->string("code");
             $table->string("title");
+            $table->timestamps();
 
         });
     }

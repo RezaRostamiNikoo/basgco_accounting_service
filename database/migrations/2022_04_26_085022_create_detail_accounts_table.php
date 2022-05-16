@@ -10,9 +10,10 @@ class CreateDetailAccountsTable extends Migration
     {
         Schema::create('detail_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string("subsidiary_account_id");
+            $table->foreignId("subsidiary_account_id")->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->string("code");
             $table->string("title");
+            $table->timestamps();
         });
     }
 

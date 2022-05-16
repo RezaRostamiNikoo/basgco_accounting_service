@@ -10,11 +10,13 @@ class CreateSubsidiaryAccountsTable extends Migration
     {
         Schema::create('subsidiary_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string("general_account_id");
+            $table->foreignId("general_account_id")->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->string("code");
             $table->string("title");
+            $table->timestamps();
         });
     }
+
     public function down()
     {
         Schema::dropIfExists('subsidiary_accounts');

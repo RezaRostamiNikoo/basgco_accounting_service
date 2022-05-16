@@ -19,12 +19,13 @@ class TempVoucherController extends Controller
 
     public function create(Request $request)
     {
-        $data = $this->validate($request, [
-            "request_id" => "required|exists:requests",
-            "row" => "required",
-            "date" => "required|string",
-            "description" => "string",
-        ]);
+            $data = $this->validate($request, [
+                "request_id" => "required|exists:requests",
+                "row" => "required",
+                "date" => "required|string",
+                "description" => "string",
+            ]);
+
         return $this->success(TempVoucher::create($data));
     }
 

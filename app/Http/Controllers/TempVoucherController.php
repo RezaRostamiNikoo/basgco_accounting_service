@@ -17,10 +17,9 @@ class TempVoucherController extends Controller
         return $this->success($temp_voucher);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
             $data = $this->validate($request, [
-                "request_id" => "required|exists:requests",
                 "row" => "required",
                 "date" => "required|string",
                 "description" => "string",
@@ -32,10 +31,8 @@ class TempVoucherController extends Controller
     public function update(Request $request, TempVoucher $temp_voucher)
     {
         $data = $this->validate($request, [
-            "request_id" => "required|exists:requests",
             "row" => "required",
             "date" => "required|string",
-            "status" => "required|string",
             "description" => "string",
         ]);
         $temp_voucher->update($data);

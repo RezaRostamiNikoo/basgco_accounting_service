@@ -12,24 +12,26 @@ class TempVoucherController extends Controller
         return $this->success(TempVoucher::all());
     }
 
-    public function detail(Request $request, TempVoucher $temp_voucher)
+    public function detail(Request $request, $temp_voucher_id)
     {
-        return $this->success($temp_voucher);
+        return $this->success(TempVoucher::findOrFail($temp_voucher_id));
     }
 
     public function store(Request $request)
     {
-            $data = $this->validate($request, [
-                "row" => "required",
-                "date" => "required|string",
-                "description" => "string",
-            ]);
+        $data = $this->validate($request, [
+            "row" => "required",
+            "date" => "required|string",
+            "description" => "string",
+        ]);
 
         return $this->success(TempVoucher::create($data));
     }
 
-    public function update(Request $request, TempVoucher $temp_voucher)
+    public function update(Request $request, $temp_voucher_id)
     {
+        $temp_voucher = TempVoucher::findOrFail($temp_voucher_id);
+
         $data = $this->validate($request, [
             "row" => "required",
             "date" => "required|string",
@@ -39,8 +41,9 @@ class TempVoucherController extends Controller
         return $this->success($temp_voucher);
     }
 
-    public function delete(Request $request, TempVoucher $temp_voucher)
+    public function delete(Request $request,  $temp_voucher_id)
     {
+        $temp_voucher = TempVoucher::findOrFail($temp_voucher_id);
         $temp_voucher->delete();
         return $this->success($temp_voucher);
     }
